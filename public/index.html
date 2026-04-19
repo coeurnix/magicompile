@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Magicompile</title>
+		<link rel="preconnect" href="https://unpkg.com" />
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+		<link rel="stylesheet" href="https://unpkg.com/7.css@0.21.1/dist/7.css" />
+		<link rel="stylesheet" href="/styles.css" />
+	</head>
+	<body>
+		<div class="desktop-backdrop" aria-hidden="true"></div>
+		<main class="desktop-shell">
+			<section class="window glass active app-window">
+				<div class="title-bar">
+					<div class="title-bar-text">Magicompile Studio</div>
+				</div>
+
+				<div class="window-body has-space">
+					<div class="hero-strip">
+						<div>
+							<p class="eyebrow">Prompt To Win32 App</p>
+							<h1>Describe a small Windows program.</h1>
+							<p class="lede">
+								Write a short idea, let the app generate a single Win32 C file,
+								then build and download it locally.
+							</p>
+							<p class="credit-note">
+								The final build runs in your browser using a WebAssembly build of
+								<a href="https://bellard.org/tcc/" target="_blank" rel="noreferrer"
+									>TCC (Tiny C Compiler)</a
+								>.
+							</p>
+						</div>
+					</div>
+
+					<div class="workspace">
+						<section class="column column-left">
+							<div class="panel-card hint-card">
+								<h2 class="instruction instruction-primary">Prompt Tips</h2>
+								<ul>
+									<li>Keep it short and focused on one window.</li>
+									<li>Good fits include GUI tools, drawing, sockets, timers, multimedia, and gamepad input.</li>
+									<li>Avoid very large ideas or external assets.</li>
+								</ul>
+							</div>
+
+							<div class="panel-card">
+								<label for="preset">Preset idea</label>
+								<select id="preset">
+									<option value="">Choose a starter...</option>
+									<option value="calculator">Calculator</option>
+									<option value="guessing">Number Guessing Game</option>
+									<option value="bouncing-ball">GDI Bouncing Ball</option>
+									<option value="http-server">HTTP Server With GUI</option>
+									<option value="xinput">Gamepad Viewer</option>
+								</select>
+
+								<label for="prompt">Prompt</label>
+								<textarea
+									id="prompt"
+									rows="12"
+									spellcheck="false"
+									placeholder="Example: Make a small Win32 calculator with a display, digit buttons, + - * /, clear, and keyboard shortcuts."
+								></textarea>
+
+								<div class="action-row">
+									<button id="generate" type="button">Generate</button>
+								</div>
+							</div>
+						</section>
+
+						<section class="column column-right">
+							<div class="panel-card output-card">
+								<h2 class="instruction instruction-primary">Build Status</h2>
+								<p id="status-headline">Ready for a small idea.</p>
+								<p id="status-detail">
+									Pick a preset or type your own prompt, then press Generate.
+								</p>
+
+								<div class="stats-grid">
+									<div class="metric">
+										<span class="metric-label">Source Lines</span>
+										<strong id="line-count">0</strong>
+									</div>
+									<div class="metric">
+										<span class="metric-label">EXE Size</span>
+										<strong id="exe-size">Not built</strong>
+									</div>
+									<div class="metric">
+										<span class="metric-label">Package</span>
+										<strong id="package-state">Waiting</strong>
+									</div>
+								</div>
+
+								<div class="spinner-panel" id="spinner-panel" hidden>
+									<img
+										id="build-spinner"
+										class="build-spinner"
+										src="/windows-vista-wait.gif"
+										alt="Windows-style waiting animation"
+										width="32"
+										height="32"
+									/>
+									<p class="spinner-copy">Building in your browser...</p>
+								</div>
+
+								<ol id="activity-log" class="activity-log"></ol>
+
+								<div class="action-row status-actions">
+									<button id="download" type="button" disabled>Download ZIP</button>
+								</div>
+
+								<div class="status-bar">
+									<p class="status-bar-field" id="build-note">
+										Generated source and build notes appear here.
+									</p>
+								</div>
+
+								<div class="error-box" id="error-box" hidden>
+									<h3>Needs Attention</h3>
+									<pre id="error-log"></pre>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+		<script type="module" src="/app.js"></script>
+	</body>
+</html>

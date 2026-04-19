@@ -1,0 +1,9 @@
+#ifndef MAGICOMPILE_TCC_WASM_CONFIG_H
+#define MAGICOMPILE_TCC_WASM_CONFIG_H
+
+#define CONFIG_TCCDIR "/tcc/win32"
+#define CONFIG_TCC_STATIC 1
+#define CONFIG_TCC_SYSINCLUDEPATHS "{B}/include"
+#define CONFIG_TCC_LIBPATHS "{B}/lib"
+
+#endif
