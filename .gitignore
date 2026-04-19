@@ -13,6 +13,9 @@ dist/
 
 public/tcc-wasm/
 
+# Keep the vendored TinyCC source tree in git; only native build outputs stay ignored.
+!vendor/
+!vendor/tinycc-official/
 vendor/tinycc-official/config.h
 vendor/tinycc-official/win32/*.dll
 vendor/tinycc-official/win32/*.exe
